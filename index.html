@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here." />
+  <base href="/" />
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+      --r-main-font-size: 24px;
+      --r-heading-margin: 20px 0 12px 0;
+    }
+
+    .indent-5 {
+      margin-left: 5px !important;
+    }
+
+    .slides {
+      width: 75% !important;
+    }
+
+    .container {
+      top: 0 !important;
+      display: flex !important;
+      flex-direction: row !important;
+    }
+
+    .column {
+      flex: 1;
+    }
+
+    section {
+      text-align: left;
+    }
+
+    .text-smaller {
+      font-size: .5em;
+    }
+
+    .popover {
+      position: absolute;
+      background-color: #4d4d4d;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+      border-radius: 10px;
+      width: auto;
+      transform: translate(35px, -15px);
+    }
+
+    .popover:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: -10px;
+      border-style: solid;
+      border-width: 25px 25px 0;
+      border-color: #4d4d4d transparent;
+      display: block;
+      width: 0;
+      z-index: 1;
+      transform: translate(-50%, 50%) rotate(90deg);
+    }
+
+    .reveal pre code {
+      max-height: 800px !important;
+    }
+  </style>
+  <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+  <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/black.css" />
+  <link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css" />
+  <title>Lesson 1</title>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>Code Management</h1>
+      </section>
+
+      <section>
+        <h3>Why?</h3>
+        <li class="fragment fade-in-then-semi-out">
+          Organize by splitting into multiple modules and multiple files
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Encapsulating implementation details lets you reuse code at a higher level
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Create scopes and change which names are in or out of scope
+        </li>
+      </section>
+      <section>
+        <h3 class="fragment fade-in">Module system features</h3>
+        <li class="fragment fade-in-then-semi-out">
+          <!-- necessary? -->
+          Packages: A Cargo feature that lets you build, test, and share crates
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Crates: A tree of modules that produces a library or executable
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Modules and use: Let you control the organization, scope, and privacy of paths
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          <!-- necessary? -->
+          Paths: A way of naming an item, such as a struct, function, or module
+        </li>
+      </section>
+
+      <section>
+        <h3>Packages and Crates</h3>
+
+        <li class="fragment fade-in-then-semi-out">
+          A <em>package</em> is one or more crates that provide a set of functionality. A package contains a
+          <em>Cargo.toml</em> file that describes how to build those crates.
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          A <em>crate</em> can be a binary crate or a library crate.
+          <ul>
+            <li class="fragment fade-in-then-semi-out">
+              Binary crate (executable)
+              <ul>
+                <li class="fragment fade-in-then-semi-out">
+                  Programs you can compile to an executable that you can run, such as a command-line program or a server
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  A unit of bundled code that contains all the code from a tree of imports (that are not defined as
+                  "external dependencies")
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  Has a root file from which the compiler begins its inclusion tree
+                  <ul>
+                    <li class="fragment fade-in-then-semi-out">
+                      <code>main.rs</code>
+                    </li>
+                    <li class="fragment fade-in-then-semi-out">
+                      Must have a <code>main()</code> function
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="fragment fade-in-then-semi-out">
+              <!-- necessary? -->
+              Library crates (non-executable)
+              <ul>
+                <li class="fragment fade-in-then-semi-out">
+                  Has a <code>lib.rs</code> as its root (not <code>main.rs</code>)
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  They define functionality intended to be shared with multiple projects. Only useful as an import.
+                </li>
+              </ul>
+            </li>
+            <li class="fragment fade-in-then-semi-out">
+              Standard library crate
+              <ul>
+                <li class="fragment fade-in-then-semi-out">
+                  Documentation: https://doc.rust-lang.org/std/
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  Some of the contents are automatically imported (like the primitive types, String, Vector)
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  Contents
+                </li>
+                <div class="container">
+                  <div class="column">
+                    <ul>
+                      <li class="fragment fade-in-then-semi-out">
+                        Collections (HashMap)
+                      </li>
+                      <li class="fragment fade-in-then-semi-out">
+                        path
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="column">
+                    <ul>
+                      <li class="fragment fade-in-then-semi-out">
+                        fs
+                      </li>
+                      <li class="fragment fade-in-then-semi-out">
+                        Time
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="column">
+                    <ul>
+                      <li class="fragment fade-in-then-semi-out">
+                        Certain constants
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </section>
+      <section>
+        <h3>Modules</h3>
+        <p class="fragment fade-in-then-semi-out"><em>Modules</em> let us organize code within a crate into groups for
+          readability and easy reuse. Modules also
+          control the <em>privacy</em> of items, which is whether an item can be used by outside code (<em>public</em>)
+          or is an internal implementation detail and not available for outside use (<em>private</em>).
+        </p>
+        <p class="fragment fade-in-then-semi-out">
+          Keyword <code>mod</code>
+        </p>
+        <ul>
+          <li class="fragment fade-in-then-semi-out">
+            Declaration of a module
+          </li>
+          <li class="fragment fade-in-then-semi-out">
+            <!-- snag -- could use example of inline module -->
+            Inline modules
+          </li>
+          <li class="fragment fade-in-then-semi-out">
+            Non-inline modules: files that might be matched by a <code>mod</code> statement
+          </li>
+          <ul>
+            <li class="fragment fade-in-then-semi-out">
+              If the defining file is the entry point of the module...
+            </li>
+            <ul>
+              <li class="fragment fade-in-then-semi-out">
+                A <code>mod.rs</code> file
+              </li>
+              <ul>
+                <li class="fragment fade-in-then-semi-out">
+                  In a sibling folder of the defining file, with a name corresponding to the mod statement
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  In the same folder as the defining file
+                </li>
+              </ul>
+            </ul>
+            <li class="fragment fade-in-then-semi-out">
+              If the defining file is <em>not</em> the entry point of the module
+            </li>
+            <ul>
+              <li class="fragment fade-in-then-semi-out">
+                A <code>.rs</code> file, with a name corresponding to the mod statement
+              </li>
+              <ul>
+                <li class="fragment fade-in-then-semi-out">
+                  In a sibling folder of the defining file
+                </li>
+                <ul>
+                  <li class="fragment fade-in-then-semi-out">
+                    With the same name as the defining file
+                  </li>
+                </ul>
+              </ul>
+            </ul>
+          </ul>
+          <li class="fragment fade-in-then-semi-out">
+            Re-exposes the same definition under a new path, for others to include
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Modules</h3>
+        <p class="fragment fade-in-then-semi-out">
+          Keyword <code>use</code>
+        </p>
+        <li class="fragment fade-in-then-semi-out">
+          Imports one definition from a module that has been defined in the same file (compile time entities, like
+          a
+          type, function, or module)
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Supports wildcards at the end of the path, to include all accessible definitions
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Privacy
+        </li>
+        <div class="container">
+          <div class="column">
+            <ul class="indent-5" class="indent-5">
+              <li class="fragment fade-in-then-semi-out">
+                Privacy of a definition is determined by its privacy annotation
+              </li>
+              <ul class="indent-5">
+                <li class="fragment fade-in-then-semi-out">
+                  Options
+                </li>
+                <ul class="indent-5">
+                  <li class="fragment fade-in-then-semi-out">
+                    Default (no annotation); available to...
+                  </li>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      The current module and any of its descendant modules
+                    </li>
+                  </ul>
+                  <li class="fragment fade-in-then-semi-out">
+                    <code>pub(super)</code>; available to...
+                  </li>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      The parent module and any of its descendant modules
+                    </li>
+                  </ul>
+                  <li class="fragment fade-in-then-semi-out">
+                    <code>pub(crate)</code>; available to...
+                  </li>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      The entry point of the current crate, and any of its descendant modules
+                    </li>
+                  </ul>
+                  <li class="fragment fade-in-then-semi-out">
+                    <code>pub</code>; available to...
+                  </li>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      Any module
+                    </li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+          </div>
+          <div class="column">
+            <ul class="indent-5">
+              <li class="fragment fade-in-then-semi-out">
+                Publication of a module must be propagated at each level to be available at the next wider level
+              </li>
+              <ul class="indent-5">
+                <li class="fragment fade-in-then-semi-out">
+                  <code>mod some_module</code>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      Imports but does not republish an entire module for wider availability
+                    </li>
+                  </ul>
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  <code>pub mod some_module</code>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      Imports and republishes an entire module for wider availability
+                    </li>
+                  </ul>
+                </li>
+                <li class="fragment fade-in-then-semi-out">
+                  <code>pub use some_module::some_definition</code>
+                  <ul class="indent-5">
+                    <li class="fragment fade-in-then-semi-out">
+                      Imports and republishes a select definition for wider availability
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Modules</h3>
+        <p class="fragment fade-in-then-semi-out">
+          Keyword <code>use</code> <em class="text-smaller">continued</em>
+        </p>
+        <li class="fragment fade-in-then-semi-out">
+          <code>{}</code> to include multiple modules
+        </li>
+        <ul>
+          <li class="fragment fade-in-then-semi-out">
+            <code>use some_module::{def1, def2};</code>
+          </li>
+        </ul>
+        <li class="fragment fade-in-then-semi-out">
+          Can include definitions several layers deep
+        </li>
+        <ul>
+          <li class="fragment fade-in-then-semi-out">
+            <code>use some_module::some_module_included_therein::some_def;</code>
+          </li>
+        </ul>
+        <li class="fragment fade-in-then-semi-out">
+          Definition path can start with the keyword <code>crate</code>
+        </li>
+        <ul>
+          <li class="fragment fade-in-then-semi-out">
+            Means "starting from the root of this crate" (like "/" in a file system)
+          </li>
+        </ul>
+        <li class="fragment fade-in-then-semi-out">
+          Definition path can start with the keyword <code>super</code>
+        </li>
+        <ul>
+          <li class="fragment fade-in-then-semi-out">
+            Means "starting from the root of the parent module" (like ".." in a file system)
+          </li>
+        </ul>
+        <p class="fragment fade-in-then-semi-out">
+          <!-- snag -->
+          Also re-exposes the same definition under a new path, for others to include
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <script type="module">
+    import Reveal from "reveal.js";
+    import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+    import RevealHighlight from "reveal.js/plugin/highlight/highlight.esm.js";
+    import RevealNotes from "reveal.js/plugin/notes/notes.esm.js";
+    import RevealNestedFragments from "reveal.js-nested-fragments";
+
+    let deck = new Reveal({
+      transition: "none",
+      plugins: [
+        Markdown,
+        RevealHighlight,
+        RevealNotes,
+        RevealNestedFragments,
+      ],
+    });
+    deck.initialize();
+  </script>
+</body>
+
+</html>

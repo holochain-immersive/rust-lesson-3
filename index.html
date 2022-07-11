@@ -103,16 +103,21 @@
           Cargo: Rust's build system and package manager
         </li>
         <li class="fragment fade-in-then-semi-out">
-          Paths: A way of naming an item, such as a struct, function, or module
+          Path: A way of naming an item, such as a struct, function, or module
         </li>
         <li class="fragment fade-in-then-semi-out">
-          Modules: Let you control the organization, scope, and privacy of paths
-        </li>
-        <li class="fragment fade-in-then-semi-out">
-          Crates: A tree of modules that produces a library or executable
+          Module: A scoped set of definitions that can be exported and used by other modules
           <ul>
             <li class="fragment">
-              A bundle of code containing all code from a tree of imports
+              Helps organize code, scopes, paths, and privacy
+            </li>
+          </ul>
+        </li>
+        <li class="fragment fade-in-then-semi-out">
+          Crate: A tree of modules that produces a library or executable
+          <ul>
+            <li class="fragment">
+              A bundle containing all code from a tree of imports
               <ul>
                 <li class="fragment">
                   Not including "external dependencies"
@@ -122,11 +127,11 @@
           </ul>
         </li>
         <li class="fragment fade-in-then-semi-out">
-          Packages: One or more crates that are bundled to provide some functionality together
+          Package: One or more crates that are bundled to provide some functionality together
         </li>
         <ul>
           <li class="fragment fade-in-then-semi-out">
-            A package is defined by its <em>Cargo.toml</em> file, which describes how to build from those crates.
+            Defined by its <em>Cargo.toml</em> file, which describes how to build from those crates.
           </li>
           <li class="fragment fade-in-then-semi-out">
             Grouping crates together into packages facilitates the build, test, and sharing processes
@@ -266,7 +271,7 @@
           <div class="column">
             <br />
             <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
-              The <code>use</code> declaration can be used to bind a full path to a new name, for easier access
+              The <code>use</code> declaration binds a full path to a new name, for easier access
             </li>
             <li class="fragment fade-in-then-semi-out" data-fragment-index="4">
               Can nest definitions
@@ -357,6 +362,9 @@ fn main() {
             Fields & methods of a struct or enum
           </li>
         </ul>
+      </section>
+      <section>
+        <h3>That's it!</h3>
       </section>
     </div>
   </div>

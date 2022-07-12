@@ -130,17 +130,6 @@
             </li>
           </ul>
         </li>
-        <li class="fragment fade-in-then-semi-out">
-          Package: One or more crates that are bundled to provide some functionality together
-        </li>
-        <ul>
-          <li class="fragment fade-in-then-semi-out">
-            Defined by its <em>Cargo.toml</em> file, which describes how to build from those crates.
-          </li>
-          <li class="fragment fade-in-then-semi-out">
-            Grouping crates together into packages facilitates the build, test, and sharing processes
-          </li>
-
         </ul>
       </section>
       <section>
@@ -152,7 +141,6 @@
           Binary crate (compiles to an executable)
         </li>
         <ul>
-          <!-- @Guillem -- is it "root file" or "entry point"? Are these synonyms? -->
           <li class="fragment fade-in-then-semi-out">
             Has a <em>root file</em> from which the compiler begins its inclusion tree
             <ul>
@@ -198,35 +186,29 @@
             </li>
           </ul>
           <li class="fragment fade-in-then-semi-out">
-            Some std crates are automatically imported (e.g. primitive types, String, Vector)
+            Some definitions from the std crate are automatically imported (e.g. primitive types, String, Vector)
           </li>
         </ul>
       </section>
       <section>
         <h3>Modules</h3>
         <li class="fragment fade-in-then-semi-out">
-          A module is a collection functions, structs, traits, <code>impl</code> blocks, or other modules
+          A module is a collection of functions, structs, traits, <code>impl</code> blocks, or other modules
         </li>
         <ul>
           <li class="fragment fade-in-then-semi-out">
             Cannot contain a crate
           </li>
         </ul>
-        <!-- @Guillem -- public and private can be somewhere different, what's the general case? -->
         <li class="fragment fade-in-then-semi-out">
-          Control the <em>visibility</em> between items using keywords <code>public</code> or <code>private</code>
+          By default, definitions are private
         </li>
         <ul>
           <li class="fragment fade-in-then-semi-out">
-            <code>public</code>: Item available to outside code
-          </li>
-          <!-- @Guillem -- what specifically does `private` prevent access from? -->
-          <li class="fragment fade-in-then-semi-out">
-            <code>private</code>: Item not available to outside code
+            You can make them private using the keyword <code>pub</code>
           </li>
         </ul>
         <li class="fragment fade-in-then-semi-out">
-          <!-- @Guillem -- review accuracy -->
           Keyword <code>mod</code> (for declaring a module)
         </li>
         <ul>
@@ -266,9 +248,7 @@
             </li>
           </ul>
         </ul>
-
       </section>
-
       <section>
         <h3>Modules</h3>
         <div class="container">

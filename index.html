@@ -222,6 +222,7 @@
             If the module, e.g. <code>my_mod</code>, is used in the crate's entry point, the compiler will look for the
             code:
           </li>
+          <!-- there are 3-4 (@Guillem to  clarify this line) kinds of entry points 1. mod entry points 2...  -->
           <!-- todo: build a visual that tells this story in a glance -->
           <!-- todo: how can we condense this section? -->
           <!-- main.rs can declare sibling modules, not_entry_point.rs can not -->
@@ -262,6 +263,7 @@
             <!-- you have to use `use` if you want to use a definition that's not defined with `mod` -->
             <!-- should we address colliding names? Answer is to use `as` to name differently and avoid collisions -->
             <!-- mod: says "this exists, and here's a name"; use: says aliasing, "take this exisiting mod and call it this different thing" -->
+            <!-- slide: should be amended to include mod `my_mod` -->
             <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
               The <code>use</code> declaration binds a full path to a new name, for easier access
             </li>

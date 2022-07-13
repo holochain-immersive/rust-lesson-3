@@ -98,6 +98,7 @@
 <body>
   <div class="reveal">
     <div class="slides">
+      <!-- todo: delete all html and shift to Guillem's plugin -->
       <section>
         <h1>Code Management</h1>
       </section>
@@ -137,29 +138,31 @@
         <li class="fragment fade-in-then-semi-out">
           A <em>crate</em> can be a binary crate or a library crate
         </li>
-        <li class="fragment fade-in-then-semi-out">
-          Binary crate (compiles to an executable)
-        </li>
         <ul>
           <li class="fragment fade-in-then-semi-out">
-            Has a <em>root file</em> from which the compiler begins its inclusion tree
-            <ul>
-              <li class="fragment">
-                <code>main.rs</code>
-              </li>
-              <li class="fragment">
-                Must have a <code>main()</code> function
-              </li>
-            </ul>
+            Binary crate (compiles to an executable)
           </li>
-        </ul>
-        <li class="fragment fade-in-then-semi-out">
-          Library crates (non-executable; only useful as an import)
-        </li>
-        <ul>
+          <ul>
+            <li class="fragment fade-in-then-semi-out">
+              Has a <em>root file</em> from which the compiler begins its inclusion tree
+              <ul>
+                <li class="fragment">
+                  <code>main.rs</code>
+                </li>
+                <li class="fragment">
+                  Must have a <code>main()</code> function
+                </li>
+              </ul>
+            </li>
+          </ul>
           <li class="fragment fade-in-then-semi-out">
-            Has a <code>lib.rs</code> as its root (not <code>main.rs</code>)
+            Library crates (non-executable; only useful as an import)
           </li>
+          <ul>
+            <li class="fragment fade-in-then-semi-out">
+              Has a <code>lib.rs</code> as its root (not <code>main.rs</code>)
+            </li>
+          </ul>
         </ul>
         <li class="fragment fade-in-then-semi-out">
           Standard library crate
@@ -205,7 +208,7 @@
         </li>
         <ul>
           <li class="fragment fade-in-then-semi-out">
-            You can make them private using the keyword <code>pub</code>
+            You can make them public using the keyword <code>pub</code>
           </li>
         </ul>
         <li class="fragment fade-in-then-semi-out">
@@ -220,6 +223,8 @@
             code:
           </li>
           <!-- todo: build a visual that tells this story in a glance -->
+          <!-- todo: how can we condense this section? -->
+          <!-- main.rs can declare sibling modules, not_entry_point.rs can not -->
           <ul>
             <li class="fragment fade-in-then-semi-out">
               Inline, directly following its declaration
@@ -254,6 +259,9 @@
         <div class="container">
           <div class="column">
             <br />
+            <!-- you have to use `use` if you want to use a definition that's not defined with `mod` -->
+            <!-- should we address colliding names? Answer is to use `as` to name differently and avoid collisions -->
+            <!-- mod: says "this exists, and here's a name"; use: says aliasing, "take this exisiting mod and call it this different thing" -->
             <li class="fragment fade-in-then-semi-out" data-fragment-index="1">
               The <code>use</code> declaration binds a full path to a new name, for easier access
             </li>
@@ -352,6 +360,7 @@ fn main() {
       </section>
     </div>
   </div>
+
 
   <script type="module">
     import Reveal from "reveal.js";
